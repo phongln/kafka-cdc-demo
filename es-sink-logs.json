@@ -1,0 +1,47 @@
+{
+    "name": "elastic-sink-logs",
+    "config": {
+        "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+        "tasks.max": "1",
+        "topics": "customers_log",
+        "connection.url": "http://elasticsearch:9200",
+        "type.name": "",
+        "schema.ignore": "true",
+        "transforms": "ReplaceField,CreateKey,ExtractKey,ReplaceField2",
+        "transforms.ReplaceField.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.ReplaceField.exclude": "schema",
+        "transforms.CreateKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+        "transforms.CreateKey.fields": "ts_ms",
+        "transforms.ExtractKey.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+        "transforms.ExtractKey.field": "ts_ms",
+        "transforms.ReplaceField2.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.ReplaceField2.exclude": "op,source,ts_ms,transaction",
+        "key.ignore": "false",
+        "behavior.on.null.values": "delete",
+        "errors.tolerance"                : "all",
+        "errors.log.enable"               : "true",
+        "errors.log.include.messages"     : "true"
+    }
+}
+
+{
+    "name": "elastic-sink-logs",
+    "config": {
+        "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+        "tasks.max": "1",
+        "topics": "customers_log",
+        "connection.url": "http://elasticsearch:9200",
+        "type.name": "",
+        "schema.ignore": "true",
+        "transforms": "ReplaceField,ReplaceField2",
+        "transforms.ReplaceField.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.ReplaceField.exclude": "schema",
+        "transforms.ReplaceField2.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.ReplaceField2.exclude": "op,source,ts_ms,transaction",
+        "key.ignore": "true",
+        "behavior.on.null.values": "delete",
+        "errors.tolerance"                : "all",
+        "errors.log.enable"               : "true",
+        "errors.log.include.messages"     : "true"
+    }
+}

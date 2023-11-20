@@ -1,0 +1,23 @@
+{
+    "name": "elastic-sink-with-transform",
+    "config": {
+        "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+        "tasks.max": "1",
+        "topics": "customers",
+        "connection.url": "http://elasticsearch:9200",
+        "type.name": "",
+        "schema.ignore": "true",
+        "transforms": "ExtractKey,ReplaceFieldValue,ExtractValue",
+        "transforms.ExtractKey.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+        "transforms.ExtractKey.field": "id",
+        "transforms.ReplaceFieldValue.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+        "transforms.ReplaceFieldValue.whitelist": "after",
+        "transforms.ExtractValue.type": "org.apache.kafka.connect.transforms.ExtractField$Value",
+        "transforms.ExtractValue.field": "after",
+        "key.ignore": "false",
+        "behavior.on.null.values": "delete",
+        "errors.tolerance": "all",
+        "errors.log.enable": "true",
+        "errors.log.include.messages": "true"
+    }
+}
